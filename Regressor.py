@@ -4,7 +4,7 @@ import numpy as np
 
 # Load model
 with open("random_forest_regressor.pkl", "rb") as file:
-    model = pickle.load(file)
+    model = pickle.load(file) 
 
 st.title("Random Forest Regression App")
 
