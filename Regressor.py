@@ -1,10 +1,10 @@
 import streamlit as st
 import pickle
-import numpy as np
+import pandas as pd
 
 # Load model
 with open("random_forest_regressor.pkl", "rb") as file:
-    model = pickle.load(file) 
+    model = pickle.load(file)
 
 st.title("Random Forest Regression App")
 
@@ -18,17 +18,16 @@ performance = st.number_input("Performance Score", 0.0, 100.0, 75.0)
 
 if st.button("Predict"):
 
-    input_data = np.array([[
-        age,
-        experience,
-        education,
-        hours,
-        projects,
-        certifications,
-        performance
-    ]])
+    input_data = pd.DataFrame([{
+        "Age": age,
+        "Experience": experience,
+        "Education": education,
+        "Hours Per Week": hours,
+        "Projects Completed": projects,
+        "Certifications": certifications,
+        "Performance Score": performance
+    }])
 
     prediction = model.predict(input_data)
 
     st.success(f"Predicted Value: {prediction[0]:.2f}")
-
